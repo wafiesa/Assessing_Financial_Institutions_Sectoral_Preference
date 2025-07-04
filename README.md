@@ -1,9 +1,9 @@
 
-# 📊 Assessing Financial Institutions’ Sectoral Preferences in SME Financing (Malaysia)
+# Assessing Financial Institutions’ Sectoral Preferences in SME Financing (Malaysia)
 
 This repository presents the analytical framework and machine learning code used to assess sectoral financing preferences of Financial Institutions (FIs) towards Small and Medium Enterprises (SMEs) in Malaysia. The work supports the Master’s research *“Assessing Financial Institutions’ Sectoral Preferences in SME Financing in Malaysia Using Machine Learning and Clustering Analysis”* (2025), conducted using data from Bank Negara Malaysia (BNM) and the Department of Statistics Malaysia (DOSM).
 
-## 🔍 Project Overview
+## Project Overview
 
 Despite being the engine of Malaysia’s economic growth, SMEs face financing difficulties influenced by institutional biases. This project investigates whether FIs demonstrate preferential treatment toward specific sectors by:
 
@@ -12,7 +12,7 @@ Despite being the engine of Malaysia’s economic growth, SMEs face financing di
 - Scoring sector preferences using model-derived feature importance
 - Performing K-means clustering against GDP contributions
 
-## 🧠 Machine Learning Models
+## Machine Learning Models
 
 Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 
@@ -27,7 +27,7 @@ Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 - Naïve Bayes
 - Linear Model (SGDClassifier)
 
-## 🧪 Methodology
+## Methodology
 
 ### 1. **Data Sources**
 - **Bank Negara Malaysia (BNM)**: SME financing data (Applied, Approved, Disbursed, Repaid) by sector
@@ -98,21 +98,6 @@ df['Cluster'] = kmeans.fit_predict(df[['FI_Preference_Score', 'GDP']])
 - Elbow plot for optimal cluster count
 - Cluster scatter plot (Preference Score vs GDP)
 
-## 📁 Repository Structure
-
-```
-.
-├── Updated_ML_FIs_Economic_Preferences.ipynb   # Main Jupyter notebook
-├── P132415_Final_Report_Using_Machine_Learning.pdf # Full research report
-├── data/
-│   ├── BNM_SME_Financing.csv
-│   └── DOSM_GDP.csv
-├── visuals/
-│   ├── cluster_plot.png
-│   ├── feature_importance.png
-├── README.md
-```
-
 ## 🎓 Citation
 
 If you use this work, please cite:
@@ -122,5 +107,5 @@ If you use this work, please cite:
 
 For questions, reach out to:
 - **Author**: Mohammad Wafiuddin bin Esa
-- **Email**: [YourEmail@example.com]
+- **Email**: [wafiesa@gmail.com]
 - **University**: Universiti Kebangsaan Malaysia

@@ -33,8 +33,8 @@ Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 - **Bank Negara Malaysia (BNM)**: SME financing data (Applied, Approved, Disbursed, Repaid) by sector
 - **Department of Statistics Malaysia (DOSM)**: Sectoral GDP contributions
 
-### 2. **Feature Engineering**
-Derived ratios:
+### 2. **Financial Ratios**
+Developed experimental ratios:
 - **Approval Ratio** = Approved / Applied
 - **Disbursement Ratio** = Disbursed / Approved
 - **Repayment Ratio** = Repaid / Disbursed
@@ -91,21 +91,21 @@ kmeans = KMeans(n_clusters=4, random_state=42)
 df['Cluster'] = kmeans.fit_predict(df[['FI_Preference_Score', 'GDP']])
 ```
 
-## 📈 Visualizations
+## Visualizations
 
 - Time-series of approved loans by sector
 - Feature importance bar plot (Random Forest)
 - Elbow plot for optimal cluster count
 - Cluster scatter plot (Preference Score vs GDP)
 
-## 🎓 Citation
+## Citation
 
 If you use this work, please cite:
 > Esa, M. W. B. (2025). *Assessing Financial Institutions’ Sectoral Preferences in SME Financing in Malaysia Using Machine Learning and Clustering Analysis*. Universiti Kebangsaan Malaysia.
 
-## 📬 Contact
+## Contact
 
 For questions, reach out to:
 - **Author**: Mohammad Wafiuddin bin Esa
-- **Email**: [wafiesa@gmail.com]
+- **Email**: wafiesa@gmail.com
 - **University**: Universiti Kebangsaan Malaysia

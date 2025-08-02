@@ -25,7 +25,6 @@ Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 - Support Vector Machine (SVM)
 - Neural Network (MLPClassifier)
 - Naïve Bayes
-- Linear Model (SGDClassifier)
 
 ## Methodology
 
@@ -35,9 +34,11 @@ Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 
 ### 2. **Financial Ratios**
 Developed experimental ratios:
+```
 - **Approval Ratio** = Approved / Applied
 - **Disbursement Ratio** = Disbursed / Approved
 - **Repayment Ratio** = Repaid / Disbursed
+```
 
 ### 3. **Label Encoding & Preprocessing**
 ```python
@@ -93,7 +94,7 @@ df['Cluster'] = kmeans.fit_predict(df[['FI_Preference_Score', 'GDP']])
 
 ## Visualizations
 
-- Time-series of approved loans by sector
+- Pie chart of approved loans by sector
 - Feature importance bar plot (Random Forest)
 - Elbow plot for optimal cluster count
 - Cluster scatter plot (Preference Score vs GDP)

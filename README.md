@@ -1,544 +1,112 @@
-# Chapter 1
 
-Introduction
-Background
-Small and Medium Enterprises (SMEs) continue to be vital to the global economy, particularly in developing nations where they form the backbone of private sector activity. According to the World Bank (2019), SMEs account for approximately 90% of businesses and more than 50% of employment worldwide, highlighting their central role in driving inclusive growth. In low and middle-income countries, SMEs have contributed up to 40% of Gross Domestic Product (GDP).
-In the post-pandemic recovery period, SMEs have been at the forefront of job creation, innovation, and resilience building. As noted by the Organisation for Economic Co-operation and Development (OECD, 2022), governments across both advanced and emerging economies have increasingly focused on supporting SMEs through digital transformation, access to finance, and supply chain integration to help them navigate global disruptions, such as inflation, geopolitical tensions, and climate-related challenges.
-Recent studies emphasised that SMEs are crucial in promoting entrepreneurship and fostering regional development. The International Labour Organization (ILO, 2019) noted that SMEs are disproportionately responsible for employment in rural and underserved areas, making them key factors in reducing regional economic disparities.
-Furthermore, the United Nations Industrial Development Organization (UNIDO, 2024) identified SMEs as important contributors to innovation, particularly in sustainable and green technologies. In line with the previous statement, SMEs remain a strategic priority in achieving inclusive and sustainable economic development, prompting a surge in academic and policy attention globally.
-In Malaysia, SMEs play a pivotal role in driving local economic development. The Department of Statistics of Malaysia (DOSM) reported that 1,101,725 SMEs including Micro Enterprises (MSMEs) were registered in 2023, constituting 96.9% of total businesses established in Malaysia as shown in Figure 1.1.
+# Assessing Financial Institutions’ Sectoral Preferences in SME Financing (Malaysia)
 
-Figure 1.1	Profile of Micro and SMEs
-Source: DOSM
-As illustrated in Figure 1.2, in 2023, MSMEs contributed as much as RM613.1 billion or 39.1% to the Gross Domestic Product (GDP) compared to RM584.1 billion (38.6%) in 2022. Additionally, MSMEs have employed 7.86 million (48.5%) out of the 16.37 million workforces in 2023. These indicate their significant position in contributing to the domestic economy. They are crucial enablers of innovation, employment, and economic diversification.
+This repository presents the analytical framework and machine learning code used to assess sectoral financing preferences of Financial Institutions (FIs) towards Small and Medium Enterprises (SMEs) in Malaysia. The work supports the Master’s research *“Assessing Financial Institutions’ Sectoral Preferences in SME Financing in Malaysia Using Machine Learning and Clustering Analysis”* (2025), conducted using data from Bank Negara Malaysia (BNM) and the Department of Statistics Malaysia (DOSM).
 
-Figure 1.2	MSMEs contributions in GDP for 2023
-Source: DOSM
+## Project Overview
 
-Given their economic importance, access to financing is a critical success factor for SMEs. This study focuses on the financing challenges faced by SMEs whose size of operation is classified in Table 1.1.
-Table 1.1	SME’s Definition of Size of Operation
-Source:	Guideline for New SME Definition, SME Corp. Malaysia (2013)
-One of many substantial contributions that have supported the growing number of SMEs over the years is the availability of access to financing. Financing from Financial Institutions (FIs) has long been the backbone of SME establishment and sustainability. The Central Bank of Malaysia (BNM) defines FIs into four which are commercial banks, Islamic banks, merchant or investment banks, and development banks. Additionally, BNM categorises 16 economic sectors for financing approvals according to Table 1.2.
-Table 1.2	Economic Sectors
-Despite SMEs’ contribution to Malaysia's economy, many SMEs faced persistent barriers to securing financing. A key issue lies in the preferential sectoral focus of FIs, which affects loan approval rates and financing terms. Understanding these preferences is crucial for developing strategies to make SME financing more inclusive.
-Presently, BNM champions financial inclusion with the vision of building an inclusive financial system. The Financial Inclusion Framework 2023 - 2026, introduced by BNM serves as a four-year strategic roadmap to advance financial inclusion in Malaysia. This initiative ensures equitable access to affordable, high-quality financial services for all Malaysians, particularly underserved communities. Financial inclusion plays a vital role in promoting shared prosperity and economic development by empowering individuals and small businesses to engage actively in the financial ecosystem.
-BNM's commitment includes increasing accessibility to financial services, fostering financial literacy and enhancing digital infrastructure for financial transactions. Initiatives such as agent banking, mobile payment systems and SME-focused financing products reflect BNM's mission to bridge financial service gaps.
-Problem Statement
-Financial inclusion for SMEs is essential to enable their participation in competitive markets. In the banking industry, the loan evaluation process has been standardised to generate a systematic credit risk assessment. The adoption of standardised credit risk assessment known as Five Cs (5Cs) will be determined by analysing the parameters such as character, capacity, capital, collateral and conditions (Ondolos et al., 2021). The 5Cs can be simply explained in Table 1.3.
-Table 1.3	Traditional Five Cs (5Cs) of Credit Assessment
-In Malaysia, the 5Cs of credit risk assessment are widely used in banks by bank officers to assess SMEs loan applications (Ondolos et al., 2021). Despite the practice of credit risk assessment, loan approval processes remain deeply influenced by rationality and subjective judgement exercised by FIs. Specifically, FIs tend to rely on 5Cs assessment with discretionary practices that will result in systematic supply-side biases.
-Burietz and Ureche-Rangau (2020) pointed out that FIs tend to prefer industries which they are more familiar or historically comfortable. This often results in credit concentration in certain sectors while leaving other sectors, which may have comparable or even superior creditworthiness.
-SCOPE OF RESEARCH
-This research will examine the dataset published by BNM to identify FIs’ preferences on economic sectors for SME financing in Malaysia. Machine Learning (ML) offers a promising tool to uncover these economic sector disparities. As shown in Bazarbash (2019), ML models such as classification and clustering can process complex datasets to reveal hidden patterns of favouritism in lending practices.  Figure 1.3 illustrates the ML approaches in this research.
+Despite being the engine of Malaysia’s economic growth, SMEs face financing difficulties influenced by institutional biases. This project investigates whether FIs demonstrate preferential treatment toward specific sectors by:
 
-Figure 1.3	Economic Sectors Preferences Using Machine Learning Models
+- Analyzing key financial ratios (Approval, Disbursement, Repayment)
+- Applying classification models to detect preference patterns
+- Scoring sector preferences using model-derived feature importance
+- Performing K-means clustering against GDP contributions
 
-ObjectiveS of Research
-The objectives of this research are formulated as follows:
-To analyse sectoral SME financing patterns in Malaysia from July 2021 to January 2025 using key financial ratios (Approval, Disbursement, and Repayment Ratios).
-To develop and evaluate machine learning classification models for predicting FIs’ sectoral financing preferences based on financial indicators.
-To derive and apply a Financial Institutions’ Preference Score using feature importance weights from the selected ML model.
-To identify clusters of economic sectors by comparing FIs’ Preference Scores against GDP contributions using clustering analysis.
+## Machine Learning Models
 
+Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 
+- ✅ **Random Forest** (Best model: F1 = 0.1939, AUC-ROC = 0.7002)
+- Gradient Boosting
+- Decision Tree
+- AdaBoost
+- Logistic Regression
+- k-Nearest Neighbours (k-NN)
+- Support Vector Machine (SVM)
+- Neural Network
+- Naïve Bayes
 
-Literature Review
-Introduction
-Access to finance remains a significant barrier for SMEs globally and Malaysia is no exception. Despite their substantial contributions to economic growth, employment and innovation, Malaysian SMEs often face persistent difficulties in obtaining financing to support expansion. This challenge is largely attributed to the perception of SMEs as high-risk entities, particularly when operating in volatile or underdeveloped economic sectors.
-Consequently, FIs may develop lending preferences that disadvantage SMEs in high-risk or less profitable sectors. Ullah et al. (2018) identified critical barriers to external finance for SMEs, including stringent lending criteria, lack of collateral, high interest rates and inadequate financial literacy. These barriers are magnified by the cautious lending strategies of FIs, who often favour larger and more established businesses.
-The Malaysian SME landscape reflects these challenges. Despite government initiatives and policies to improve SME access to finance, many still face difficulties securing loans. The strict risk assessment before lending decisions and the perceived high risk associated with SMEs further complicate the situation.
-Shu-Teng et al. (2015) investigated the factors influencing loan repayment performance among SMEs in Malaysia. The high default rate among SMEs leads to increasing non-performing loans (NPLs). The research identified key determinants such as borrower educational level, business experience, amount of loan and loan tenure. The findings indicated that SMEs struggled to secure loans from commercial banks due to lack of collateral. Additionally, the study highlighted the importance of effective loan management and borrower support to enhance repayment rates and reduce defaults.
-Likewise, Min Bai and Samir Harith (2023) analysed credit risk among 303 SMEs in Malaysia between 2005 and 2014. It aims to provide a robust framework for quantifying SME risk and understanding the relationship between operational characteristics and risk. The study found that high debt levels did not necessarily increase SME’s risk; instead, low profitability was a stronger predictor of credit risk.
-An example of a high-risk economic sector is agricultural. Mohd Shafiai and Moi (2015) investigated the financial challenges faced by farmers in Malaysia and found that limited access to financing was a persistent issue. This difficulty stems from the sector's exposure to natural risks such as droughts, floods and pest infestations, which increase uncertainty for lenders. As a result, farmers often encounter financial constraints, particularly during the second cultivation cycle. These constraints reduce productivity and reinforce the sector's classification as high-risk. The study highlights the unique challenges faced by farmers and underscored the need for tailored financial solutions to accurately assess and mitigate agricultural risks.
-Similarly, in the construction sector, Fauzilah et al. (2021) examined the business risks affecting the performance of SMEs in Malaysia. The study identified key risk factors, including project delays, cost overruns and contractor performance. It also found that limited access to financing contributed to cash flow problems, which in turn led to project delays and, in some cases, the risk of contract termination. These findings emphasised the critical importance of adequate financial access for SMEs in the construction sector to remain competitive and sustain their operations in the market.
-Various studies highlights the structural barriers to SME financing, suggesting the urgent need for more inclusive financial systems. Moreover, Ramlee and Berma (2013) investigated the financing gap experienced by SMEs in Malaysia from a supply-side perspective. The paper identified the mismatch between the demand for and supply of institutional funds for SMEs. It discusses the reasons behind the reluctance of banks to lend to SMEs, including perceived risks, lack of collateral and insufficient credit information. The study highlighted the need for improved financial schemes and better risk assessment mechanisms to bridge the financing gap. It also suggested policy interventions to encourage FIs to increase their lending to the SMEs.
-In a separate study, Oikawa (2021) explored the critical role that government policies play in supporting SMEs in Penang, Malaysia. The paper examined the effectiveness of various government initiatives aimed at enhancing the development of SMEs. The author found that only 6.8% of SMEs had received financial assistance out of 44 samples surveyed in Penang, Malaysia. The study provided empirical evidence on the usage of frequency SME support programmes. Conclusively, the author suggested more financial access, among others, for SMEs to prosper in future.
-The financing gap among SMEs has been the centre of discussion in the National Entrepreneur Small and Medium Enterprises Development Council (NESDC). In 2020, BNM’s Fund for SMEs was introduced to provide access to financing at a reasonable cost for SMEs in all economic sectors. This latest development signifies the hardship of SMEs in securing financing from FIs and diverting to alternative government agencies.
-This research focuses specifically on FIs' preferences regarding economic sectors in SME financing. ML models will be used to analyse and predict FIs' preferences for approving SME financing across different economic sectors in Malaysia.
-MACHINE LEARNING IN FINANCING
-The use of ML models in assessing loan approvals has grown significantly in the financial sector. These models aim to enhance the accuracy and efficiency of loan approval predictions while supporting risk assessment practices for FIs.
-Thus, using ML models in loan approval processes can potentially reduce the risk of human bias. ML models are designed to evaluate applications based on objective criteria and data-driven insights, minimising the influence of subjective human judgment. This can help to ensure that loan applications are evaluated more fairly and ultimately leading to unbiased assessment.
-While ML models can enhance risk assessment, final loan decisions are ultimately governed by formal authority structure within FIs. This is aligned with paragraph 10.1, Credit Risk Guideline (2024) which suggests:
-A well-defined authority structure for approving credits is underpinned by a clear delineation of duties, and an appropriate separation between credit risk oversight and decision-making.
-Source: BNM
-Additionally, paragraph 11.1 of Credit Risk Guideline (2024) states:
-There may be circumstances where credits that do not satisfy a financial institution’s pre-defined governance and risk management arrangements, such as the risk appetite, credit risk strategy and credit risk policy, represent legitimate credit needs with sound credit risk profiles. This can arise where gaps in the credit risk policy or credit risk management practices exist due to the practical challenge of identifying all probable circumstances under which credits may be extended. Notwithstanding these considerations, exceptional credits warrant greater scrutiny by the financial institution.
-Source: BNM
-Thus, the paragraphs extracted from Credit Risk (2024) outlined by BNM suggested that there must be a clear separation between credit risk and approving authority. These guidelines highlight that while governance structures are essential, FIs may exercise discretion in exceptional cases, provided such deviations are justified and scrutinised appropriately.
-Hence, human factors will be involved in the decision-making processes for loan approvals. This supports the assertion that human judgement remains embedded in loan decision-making, potentially giving rise to preferential treatment of economic sectors.
-This study aims to detect patterns of preferential treatment across economic sectors by applying ML models, thereby providing insights into the current SME financing landscape in Malaysia. Several studies have demonstrated the effectiveness of ML in credit scoring, risk assessment and loan approval processes.
-A study by Goliya (2024) discussed the challenges faced by FIs in the loan approval process and proposed using ML models to predict loan approval. The focus is on using parameters such as credit scoring, income, age, marital status and gender to classify customers and determine their loan eligibility. The study highlighted the efficiency of ML models like Decision Tree (DT), Random Forest (RF), Support Vector Machine (SVM), Linear Model (LM) and Neural Network (NN) in improving the accuracy of loan approval predictions. SVM and RF demonstrated the highest predictive accuracy, achieving 88.89%, outperforming other models such as DT and LM. Overall, the study provides insights into the application of machine learning in the context of loan approval.
-Furthermore, Suliman (2021) addressed FIs facing challenges in loan approval due to inaccurate estimations and lack of information. The author used variables such as gender, marital status, dependents, education, employment status, income and among others listed in Table 2.1. It proposed a methodology using data mining and ML models to predict loan approval status. The research compared Logistic Regression (LR), DT and RF classifiers to determine the most accurate prediction model. The findings concluded that LR is the best ML model with 91% accuracy. The author also proposed for future study to extract features by applying hybrid ML models to improve prediction accuracy.
-Table 2.1	Variables used in the study by Suliman (2021)
-Similarly, Viswanatha et al. (2023) conducted a study on predicting loan approval using the same data as in Table 2.1. However, the study was performed using RF, DT, Naïve Bayes (NB) and -Nearest Neighbours (k-NN). The findings showed that NB has the best model accuracy of 83.73%, followed by RF and k-NN, both with the same accuracy of 77.23% while DT has the lowest accuracy of 63.41%.
-Moreover, Baesens et al. (2003) examined the use of NN rule extraction and decision tables in credit risk evaluation. Although dated, this study is seminal in highlighting rule-based interpretation of neural networks, an area that remains relevant in today’s explainable AI efforts. The authors use features such as economic sector, client years, property, income and among others stipulated in Table 2.2. The study demonstrates that pruned NN can achieved 77.84% accuracy. The authors also proposed a rule extraction technique to interpret NN models such as Neurorule, Trepan and Nefclass for credit risk evaluation. The findings emphasised the potential of advanced ML models to investigate other management science problems such as churn prediction, customer retention and bankruptcy prediction.
-Table 2.2	Attributes for the German Credit Dataset
-…to be continued
-…continuation
-Source: Baesens et al. (2003)
-A study by Yang (2023) examined the application of ML models in evaluating home loan approvals and credit risks. The author compared six ML models which are LR, DT, RF, SVM, AdaBoost (AB) and NN. This study aims to determine the most effective model in terms of accuracy and interpretability for predicting loan approvals. Key features included income level, debt-to-income ratio and employment tenure, among others (see Table 2.3). From the study, LR was the best ML model with 76% accuracy. The study also found that there were prevailing variables to get loan approval.
-Table 2.3	Variables
-…to be continued
-…continuation
-Source: Yang (2023)
-The existing literature primarily focuses on credit risk assessments using ML models that analyse loan approvals and borrowers’ possibilities of defaulting on loan repayments. Features such as business nature, credit scoring, income, status of employment, marital status, number of dependents and other variables are among a few that were used for credit risk assessments. Credit risk assessments are used in a prediction process to evaluate every financing application before decision-making processes take place.
-SUMMARY
-Numerous studies (e.g., Ullah et al., 2018; Shu-Teng et al., 2015; Ramlee & Berma, 2013) have identified various supply-side constraints, including stringent lending criteria, lack of collateral, high perceived risk and limited financial literacy, which hinder SMEs' access to formal credit.
-While these studies largely attribute financing challenges to SME-specific characteristics, they offer limited exploration of the lending behaviour of FIs, particularly how sectoral preferences may influence loan approvals. Most research has concentrated on credit risk assessment using borrower-level data and ML models (e.g., Suliman, 2021; Yang, 2023), but failed to address how macroeconomic sectoral characteristics, such as growth volatility and GDP contribution, affect FIs decision-making.
-Moreover, the discretionary authority retained by loan officers and the subjectivity embedded in credit governance, as outlined by BNM's (BNM) Credit Risk Guidelines (2024), allowing human judgment to override even well-defined risk frameworks. This opens the possibility for preferential treatment toward certain economic sectors, which remains largely unquantified and underexplored in empirical research.
-There is a conspicuous research gap in assessing the sectoral dimensions of financial exclusion using ML models that can detect implicit preferences and structural disparities. Addressing this gap is crucial not only for enhancing credit fairness but also for informing policymaking and SME development strategies aimed at fostering a more inclusive and transparent financing ecosystem. Hence, this study proposes to investigate FIs’ sectoral preferences in SME financing using ML models. By leveraging national SME financing datasets published by BNM, the study aims to offer both diagnostic and predictive insights into sectoral biases embedded in loan approval decisions.
-RESEARCH GAPS
-Although financial institutions (FIs) employ credit risk assessment frameworks, human judgment continues to play a role in final loan approval decisions. In Malaysia, BNM's Credit Risk Guidelines (2024) mandate a clear separation between credit risk oversight and credit approval authority. Despite formal separation, there remains a potential for approving authorities to exhibit preferences for specific financing applications or economic sectors. Figure 2.1 illustrates the separation of structures between credit risk and approving authority for loan approvals.
-The literature also reveals a lack of systematic investigation into the lending behaviour of FIs, particularly in terms of equitable treatment across economic sectors. This gap underscores the relevance of investigating whether preferential treatment exists in SME financing across economic sectors in Malaysia, which is a key objective of the present study. Much of the existing literature attributes financing barriers solely to SME-level characteristics, such as lack of collateral, limited credit history, or business informality. Table 2.4 lists the authors and their key findings.
+## Methodology
 
-Figure 2.1	Separation between Approving Authority and Credit Risk in FIs
-Table 2.4	Key Findings For SMEs’ Challenges
-Furthermore, there is a noticeable gap in the literature concerning the internal decision-making behaviour of FIs in SME lending. Specifically, the role of subjective judgement in shaping sectoral preferences has not been thoroughly investigated in prior studies. Figure 2.2 depicts the SME financing ecosystem adapted in a Venn diagram, as shown below.
+### 1. **Data Sources**
+- **Bank Negara Malaysia (BNM)**: SME financing data (Applied, Approved, Disbursed, Repaid) by sector
+- **Department of Statistics Malaysia (DOSM)**: Sectoral GDP contributions
 
-Figure 2.2	Venn Diagram of the SME Financing Ecosystem
-ML models have increasingly been adopted as risk assessment tools in the financial sector. The literature review revealed that as many as nine ML models were used such as DT, RF, SVM, LM, NN, LR, AB, NB and k-NN.  Table 2.5 summarises the ML models used by each author.
-Table 2.5	Summary of ML models in Literature Review
-…to be continued
-…continuation
-Among these, LR, DT and RF emerged as the most frequently applied models, often evaluated using metrics such as accuracy, precision and recall. It was also found that LR was used in two studies and achieved the best accuracy performance for model prediction.
-However, none of the studies in this literature review utilise Gradient Boosting (GB). GB is an ML model used for classification tasks. It creates a predictive model with significant advantages in managing complex data relationships and is resilient to overfitting due to the iterative refinement process. Figure 2.3 illustrates the gap analysis of the ML models discussed in this literature review.
+### 2. **Financial Ratios**
+Developed experimental ratios:
+```
+Approval Ratio=(Financing Approved)/(Financing Applied)
+Disbursement Ratio=(Financing Disbursed)/(Financing Approved)
+Repayment Ratio=(Financing Repaid)/(Financing Disbursed)
+```
 
-Figure 2.3	Venn Diagram of ML Gap Analysis
-SIGNIFICANCE OUTCOMES OF THE RESEARCH
-This research contributes to both academic literature and policy studies in the areas of credit risk assessment, SME financing and machine learning applications in financial decision-making. Specifically, it investigates how financial institutions' loan approval behaviours vary across economic sectors, revealing potential patterns of preference or bias.
-BNM, as a monetary regulator, has published datasets regarding the application, approval and disbursement of SME financing across 16 economic sectors. This research will analyse approval trends and the financing utilisation across these sectors to identify patterns of institutional preference.
-To support this analysis, ML models will be developed and validated to detect economic sector preferences in financing approvals by FIs. These models will be trained on historical data from BNM to uncover patterns and relationships influencing financing approvals.
-One of the key objectives is to identify which economic sectors consistently receive higher financing approvals, indicating possible sectoral preferences. Adapting ML models in this research will distinguish loan recipients into separate groups based on their GDPs and financing approvals. This insight can help SMEs better understand institutional lending patterns and adjust their financing strategies accordingly.
-Ultimately, the findings from this ML-driven analysis can inform future policy research into this area, which will be a huge milestone for the behavioural study of FIs' preferences, especially their “risk appetite” or preference for “high-risk, high-profit” rather than “low-risk, low-profit.” The insights derived from the ML models can guide the formulation of targeted policy interventions and strategic action plans to foster a more inclusive SME financing ecosystem in Malaysia.
+### 3. **Label Encoding & Preprocessing**
+```python
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
+# Encode sector
+le = LabelEncoder()
+y = le.fit_transform(df['Sector'])
 
-Methodology
-introduction
-This chapter presents the research design, dataset sources and analytical methods used to evaluate FIs’ preferences in SME financing across economic sectors in Malaysia. Given the increasing reliance on data-driven models in financial services, ML offers a strong approach to uncover biases and patterns within loan approval processes.
-This study applies supervised ML models to classify economic sectors based on financial institutions’ loan approval behaviour and to identify hidden sectoral preferences in SME financing. This approach is grounded in the precedent of similar studies utilising AI in credit risk modelling (Ciampi et al., 2021; Abdullah & Mohamad, 2024).
-While existing studies on SME financing predominantly emphasised borrower-level attributes, they often overlook how sectoral preferences influence loan decisions. Thus, there is a compelling need to use ML not only for predicting approvals but for exploring institutional behaviours and systemic patterns based on sectoral economic data (Durojaiye et al., 2024).
-DATASET
-Central Bank of Malaysia (BNM) – Financial Inclusion Statistics
-In this research, datasets from BNM on financial inclusion will be utilised to achieve the research objectives. These datasets span from July 2021 to January 2025 and include information such as year, month, FIs sector and 16 economic sectors. The datasets consist of SME financing values which separately covers financing applied by sector, financing approved by sector, financing disbursed by sector, and financing repaid by sector. These datasets can be obtained from .
-Each separate dataset has identical variables and instances that will be used to derive multiple ratios that will be discussed in Section 3.3. These ratios are an experimental approach to uncover lending behaviours from the datasets from BNM.
-Department of Statistics Malaysia (DOSM) – Gross Domestic Product
-This research has utilised the Gross Domestic Product (GDP) dataset from the Department of Statistics Malaysia (DOSM). This sector-specific dataset was requested from DOSM through the eStatistik portal. It includes information on GDP contributions from each economic sector, as listed in Table 1.2. Additionally, the dataset records quarterly GDP contributions from Q1 2021 to Q4 2024.
-This dataset is used as GDP variable for comparison with the financial ratios. This approach will establish a ground of preferences surrounding financing lending behaviour, mismatching with the GDP contributions by each economic sector. The dataset can be obtained from .
-Data Variables
-The initial dataset used in this study is Financing Applied by Sector. Table 3.1 below shows the list of variables and their descriptions.
-Table 3.1	Financing Applied by Sector
-…to be continued
-…continuation
+# Standardize features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(df[['Approval Ratio', 'Disbursement Ratio', 'Repayment Ratio']])
+```
 
-Additionally, this research has acquired the Financing Approved from BNM. Table 3.2 shows the list of variables and their descriptions.
-Table 3.2	Financing Approved by Sector
-…to be continued
-…continuation
-Then, Financing Disbursed was used in this research, as shown in Table 3.3.
-Table 3.3	Financing Disbursed by Sector
-…to be continued
-…continuation
-Next, the Financing Repaid by Sector dataset was used as depicted in Table 3.4.
-Table 3.4	Financing Repaid by Sector
-…to be continued
+### 4. **Train-Test Split & Stratified Cross Validation**
+```python
+from sklearn.model_selection import train_test_split, StratifiedKFold
 
-…continuation
-Finally, this research has obtained the GDP data as shown in Table 3.5 with its variables.
-Table 3.5	Gross Domestic Product
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.3, random_state=42)
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+```
 
-Data Pre-processing
-Data Loading
-The datasets from BNM and DOSM were loaded from Excel format to Google Colab in Python 3 environment. These datasets were loaded using Pandas and initially examined by accessing the first ten rows, generating information about the data and describing the variables.
-Data Cleaning
-BNM Dataset
-This step was initiated by skipping the first five rows, as they contain notes suited for reporting. These rows are not useful for the analysis; thus, removing them will not affect the data structure. Next, the cleaning process continued by splitting the column ‘Period’ into ‘Year’ and ‘Month’ columns as an integer and an object, respectively. The missing values for ‘Year’ and ‘Month’ columns were forward-filled based on sequence of the ‘Total’ row. Then, the bilingual column ‘Sector’ was retained only in English for the analysis. This followed by the conversions of Economic Sectors into numerical values. Lastly, empty rows were dropped to complete the final cleaning process for BNM datasets.
-DOSM Dataset
-Similarly, the data cleaning process was performed on the dataset by removing the first five rows, as they also contain notes for reporting purposes. Next, the necessary datatype conversions were performed for the dataset. Lastly, empty rows were dropped to complete the cleaning process for DOSM dataset.
-Data Transformation
-BNM Dataset
-The cleaned datasets from BNM were subsequently used to calculate experimental quantitative financial ratios, which will be elaborated in section 3.3. These financial ratios are crucial for the analysis, as they will be utilised in ML models to assess feature importance. This process will aid in identifying which economic factors most significantly influence FIs’ decisions.
-Merging BNM and DOSM Datasets
-The final approach in data pre-processing involves merging the financial ratios dataset with the GDP dataset. Prior to this merging, it is important to aggregate the monthly financial ratios into a quarterly format. This step ensures that both datasets are aligned to facilitate the analysis. Once the datasets are successfully merged, the dataset will be utilised to compute a weighted scoring model, which will be detailed in section 3.6. This scoring model will serve as a foundation for conducting clustering analysis, enabling deeper insights into the relationships among the financial and economic indicators.
-DETERMINE THE FINANCIAL RATIOS
-To understand the preferences of FIs over specific economic sectors, it involves an experimental quantitative research approach. The quantitative research approach can be measured from the formulated financial ratios, which consist of the Approval Ratio, Disbursement Ratio and Repayment Ratio.
-Referring to Equation 3.1, the Approval Ratio is a crucial metric used by FIs to assess the likelihood of approving loan applications within various economic sectors. This metric is calculated by dividing the Financing Approved by the Financing Applied. A high approval ratio indicates a sector with low perceived risk, as FIs are more willing to approve loans due to favourable conditions such as stable cash flows or strong economic growth. Conversely, a low approval ratio suggests a sector where FIs perceive higher risk, potentially due to market volatility or sector-specific challenges.
-Referring to Equation 3.2, the Disbursement Ratio is another important indicator, representing the ratio of Financing Disbursed to Financing Approved. This ratio provides insight into how efficiently FIs can transition approved loans into actual disbursements. A high disbursement ratio signals that approved financing is promptly translated into economic activity, reflecting the FIs’ confidence in the sector's prospects. On the other hand, a low disbursement ratio may imply challenges in executing approved loans, possibly due to regulatory hurdles or concerns about the borrower's ability to meet conditions precedent.
-Referring to Equation 3.3, the Repayment Ratio is a critical measure of creditworthiness, calculated by dividing the Financing Repaid by the Financing Disbursed. This ratio highlights the ability of borrowers within a sector to meet their financial obligations. A high repayment ratio indicates a sector with strong repayment capacity and financial health, often leading to increased confidence from FIs. In contrast, a low repayment ratio raises red flags about potential defaults and may result in tighter lending conditions.
-In the context of financial lending, approval ratio, disbursement ratio and repayment ratio are formulated to assess FIs' preferences. These ratios provide insights into how loans are approved, disbursed and repaid. Collectively, these ratios will indicate the financing position of specific economic sectors. In the pursuant of this research, the task is to group the economic sectors with high approval rates, high loan disbursements and the strongest repayment performance.
+### 5. **Model Training & Evaluation**
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import f1_score, roc_auc_score
 
-MACHINE LEARNING MODELS
-This research used supervised ML classifier to investigate the economic sectoral preferences of FIs in SME financing. Supervised learning is particularly advantageous as it allows models to learn from labelled historical data. In this context, the independent variables under examination are the economic sectoral approval ratio, disbursement ratio and repayment ratio. Meanwhile, the dependent variable is a categorical class that represents the economic sectors.
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
 
-In the literature review, a total of nine models were used to perform the analysis. This section details the selection of classification models employed for the purpose of this research, elucidates the rationale behind their selection and discusses their comparative application.
-Pre-Machine Learning Setup
-Packages Used for the Analysis
-The ML processing was conducted using the Python 3 environment in Google Colab. Prior to model development, essential libraries such as Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, Altair, and Plotly were installed to support data pre-processing, model training, and visualisation.
-Data Partitioning
-After installing the necessary Python packages, the next step involves encoding the categorical target variable, Sector, using the LabelEncoder() function from Scikit-learn. This is followed by standardising the dataset with StandardScaler(), ensuring that all features are on a comparable scale and contribute equally during model training.
-Subsequently, a multiclass Area Under the Curve – Receiver Operating Characteristics (AUC-ROC) analysis is conducted using the label_binarize() function. This step facilitates the evaluation of model performance across multiple target categories.
-The dataset is then split into training and testing sets using train_test_split(X, y, test_size=0.3, random_state=42), with 30% of the data reserved for testing. To complete the data partitioning process, the Stratified Cross-Validation technique is applied using StratifiedKFold(n_splits=5, shuffle=True, random_state=42)  which ensures that the class distribution is maintained across each fold, enhancing the reliability and consistency of the model evaluation.
-Hyperparameter Tuning
-Table 3.6 below presents the hyperparameter tuning used for the ML models.
-Table 3.6	Hyperparameter Tuning for ML Models
-Random Forest
-The Random Forest model is an ensemble learning method that constructs multiple decision trees during training and outputs the mode of the classes for classification or the mean prediction for regression of the individual trees. In classification tasks, the final prediction is made by taking mode (most frequent class) of the predictions from all trees. This can be expressed as:
+y_pred = rf.predict(X_test)
+f1 = f1_score(y_test, y_pred, average='weighted')
+```
 
-where  represents the predicted class for an input  and  denotes the prediction from the th tree. The  is the set possible classes and  is the total number of trees in the model. The  is the indicator function of the argument if it is true or otherwise.
-Decision Tree
-A decision tree is a supervised learning model used for classification and regression tasks. It works by recursively splitting the dataset into subsets based on the value of input features, creating a tree-like structure where each internal node represents a decision based on a feature, each branch represents the outcome of that decision and each leaf node represents a class label or a predicted value.
-The decision tree algorithm typically involves selecting the best feature to split the data at each node. This is often done using criteria such as Gini impurity or information gain. The Gini impurity for a dataset 𝐷 is given by,
-where 𝑝𝑖 the probability of class 𝑖 in the dataset 𝐷. The feature that results in the lowest Gini impurity is chosen for the split. Alternatively, information gain, which is based on entropy, can be used. The entropy of a dataset 𝐷 is defined as,
-Gradient Boosting
-Gradient Boosting Classifier is an ensemble machine learning technique that builds a sequence of weak learners. Typically, each subsequent model is trained to correct the residual errors of the previous models, by minimising a differentiable loss function through gradient descent, ultimately improving classification accuracy. The equation for an ensemble model can be expressed as,
-where Fm is an ensemble model at iteration m. The hm(x) is new weak learner fitted to the negative gradient. The γm is step size learning rate.
-AdaBoost Classifier
-AdaBoost (Adaptive Boosting) is an ensemble learning method that combines multiple weak learners, typically decision stumps into a single strong classifier. It trains learners sequentially, where each new learner focuses more on the instances that were misclassified by the previous ones. The final model is a weighted vote of all the weak learners which can be expressed as,
-where  is the input feature vector, while  is the prediction from the th weak learner. The  is the weight assigned to the th learner. The T is the total number of learners. The sign is the output for the class label.
-k-Nearest Neighbours (k-NN)
-The -Nearest Neighbours (-NN) is a non-parametric, instance-based learning algorithm. It predicts the class of a data point based on the majority class among its  closest neighbours in the feature space. To fit the -NN model for categorical variables, the Hamming distance is used as below:
-where  is the total distance between two features vectors of . The  is the ith feature in the input vector. While  is value of the ith feature in the neighbour vector. The k stands for the number of features.
-Logistic Regression
-This research will adopt the Multinomial Logistic Regression (LR) model, which models the probabilities of different possible outcomes of a categorically distributed dependent variable, given a set of independent variables. It is suitable when the dependent variable is nominal and has more than two categories. The model estimates the log odds of each category relative to a reference category.
-Mathematically, for a dependent variable Y with K categories and predictors X, the probability of outcome k is:
-where, β​k is the coefficient vector for category k and one category is typically set as the reference to ensure model identifiability.
-Neural Network
-Neural Networks (NN), also known as Artificial Neural Networks, are computational systems that imitate human learning capabilities. The NN is formed by interconnected layers of nodes, also known as neurons. This function learns complex patterns, which can be expressed in the equation below:
-where  are the input features while  are the weights associated with each input. The  is the bias term and Z is the linear combination result.
-Support Vector Machines
-Support Vector Machines (SVM) are powerful classifiers traditionally designed for binary classification, by separating two classes with the optimal margin. However, in many real-world applications, we need to classify data into more than two categories.
-Multi-class SVM extends the SVM framework to handle more than two classes (e.g., classify sectors into agriculture, manufacturing, services, etc.). The expression for multi-class SVM is shown as below:
-where is the weight vector to decision boundary. The b is the bias. The  is the squared Euclidean, representing the margin’s inverse. Meanwhile the constraint is subject to  input features and   class labels. The constraint forces the score of correct class yi exceeds the score of any incorrect class w by at least 1.
-Naïve Bayes
-The Naïve Bayes classifier is founded on Bayesian probability, which originated from Reverend Thomas Bayes. Bayesian probability incorporates the concept of conditional probability, the probability of event A given that event B has occurred.
-where  is the probability outcome based on the historical data. P(x) is the probability of the predictor variables. The  is the conditional probability or likelihood. Essentially, the  is called posterior probability.
-MODEL EVALUATION
-Evaluating the performance of classification models is a crucial aspect of machine learning and statistical analysis. There are some key metrics that are used in this study for measuring model performance, such as Accuracy, Precision, Recall (True Positive Rate), F1-Score, Area Under Curve – Receiver Operating Characteristic (AUC-ROC) and Confusion Matrix. Each of these metrics measures various aspects of model performance.
-Accuracy
-Accuracy is a key metric that quantifies the ratio of correct predictions generated by the model. It is determined using the following formula:
-where:
-𝑇𝑃 (𝑇𝑟𝑢𝑒 𝑃𝑜𝑠𝑖𝑡𝑖𝑣𝑒𝑠): Correctly predicted positive instances.
-𝑇𝑁 (𝑇𝑟𝑢𝑒 𝑁𝑒𝑔𝑎𝑡𝑖𝑣𝑒𝑠): Correctly predicted negative instances.
-𝑃: Total actual positive instances.
-𝑁: Total actual negative instances.
-The best possible accuracy is 1.0 (100% correct predictions), while the worst is 0.0 (no correct predictions).
-Precision
+### 6. **Feature Importance & Preference Score**
+```python
+# Extract feature importance
+importance = rf.feature_importances_
 
-Precision emphasises the accuracy of the model's positive predictions. It is defined as:
-where:
-𝐹𝑃 (False Positives): Incorrectly predicted positive instances.
+# Weighted Preference Score
+df['FI_Preference_Score'] = (importance[0] * df['Approval Ratio'] +
+                             importance[1] * df['Disbursement Ratio'] +
+                             importance[2] * df['Repayment Ratio'])
+```
 
-A precision score of 1.0 signifies flawless precision, whereas a score of 0.0 reflects no accurate positive predictions.
-Recall
-Recall, often referred to as the True Positive Rate or Sensitivity, evaluates how effectively the model identifies positive instances. It is calculated as:
-A recall score of 1.0 means that every actual positive instance was correctly recognised, while a score of 0.0 signifies that none were recognised.
-F1-Score
-The F1-score merges precision and recall into one metric, striking a balance between them. It is calculated using the formula below:
+### 7. **Clustering**
+```python
+from sklearn.cluster import KMeans
 
-This score spans from 0.0 to 1.0, where higher values signify improved performance.
-Area Under Curve – Receiver Operating Characteristic (AUC-ROC)
-The ROC curve illustrates the balance between True Positive Rate and False Positive Rate across different threshold levels. The area beneath this curve (AUC) measures the model's overall capacity to differentiate between positive and negative classes. A higher AUC indicates superior model performance in ordering predictions, with an AUC of 1.0 representing flawless discrimination.
-Confusion Matrix
-The confusion matrix offers a detailed overview of the performance of a classification model by summarising the counts of true positives, false positives, true negatives and false negatives, as illustrated in Table 3.7.
-Table 3.7	Confusion matrix
-where:
-𝑇𝑃 (𝑇𝑟𝑢𝑒 𝑃𝑜𝑠𝑖𝑡𝑖𝑣𝑒𝑠)
-𝐹𝑃 (𝐹𝑎𝑙𝑠𝑒 𝑃𝑜𝑠𝑖𝑡𝑖𝑣𝑒)
-𝐹𝑁 (𝐹𝑎𝑙𝑠𝑒 𝑁𝑒𝑔𝑎𝑡𝑖𝑣𝑒𝑠)
-𝑇𝑁 (𝑇𝑟𝑢𝑒 𝑁𝑒𝑔𝑎𝑡𝑖𝑣𝑒𝑠)
+kmeans = KMeans(n_clusters=4, random_state=42)
+df['Cluster'] = kmeans.fit_predict(df[['FI_Preference_Score', 'GDP']])
+```
 
-Feature Importance
-Following the application of cross-validation and hyperparameter tuning, the machine learning models are evaluated based on their F1-score and AUC-ROC metrics. The model demonstrating the highest performance across these evaluation criteria is selected for feature importance analysis.
-Cross-validation and tuning are essential steps to ensure the model generalises well to unseen data and to minimise the risk of overfitting. Consequently, the derived feature importance values from the selected model are more reliable.
-Feature importance reflects the relative contribution of each input feature to the model’s predictive accuracy. A higher importance score indicates that the feature plays a more significant role in determining the outcome. In essence, each feature is assigned a weight that quantifies its influence on the target variable.
-This analysis is critical for improving model interpretability and offers valuable insights for future decision-making and data-driven strategy refinement. The importance in this context is calculated on the total reduction of the criterion (like Gini impurity or entropy) brought by that feature across all trees in the ensemble. This is known as Mean Decrease in Impurity (MDI) as shown below:
-where  is the Mean Decrease in Impurity for feature . The T is the total number of trees in decision tree method.  The  are all nodes in the tree t. The  is the indicator function that is 1 if feature is used at the node , otherwise 0. The  is a propotion of samples reaching node . Lastly,  is a decrease in impurity from the split at node .
-ANALYTIC HIERARCHY PROCESS (AHP) USING FEATURE IMPORTANCE
-This research applies the Analytic Hierarchy Process (AHP) by incorporating feature importance scores as weights, following a similar approach proposed by Abdulla and Baryannis (2024). In this method, the feature importance values are assigned as weights to each criterion. These weights are then multiplied by the corresponding financial ratio values, and the weighted criteria are summed to compute a composite score for each economic sector.
-Given this research has developed financial ratios, the weighted criterion can be named as FIs Preference Score and expressed in the Equation 3.19.
-where the weights (, , ) are derived by AHP using feature importance from ML classification analysis.
-The FIs Preference Score represents the total score for each economic sector, obtained by summing the weighted, normalised values across all criteria. This score enables the ranking of economic sectors and reflects the level of preference shown by financial institutions.
-The FIs Preference Score, once computed, is integrated with the corresponding GDP values of each economic sector to construct a dataset for clustering analysis. This approach enables the identification of groupings among the sectors based on both FIs preferences and GDP contributions.
-CLUSTERING ANALYSIS
-This research uses -means clustering to find optimal groupings for the economic sectors. The objective is to group sectors with similar financial behaviour and economic contributions, providing a clearer understanding of sectoral positioning based on FIs Preference Score and GDP values.
-The clustering will adopt the median FIs Preference Score which is a sum of weighted values derived from financial ratios such as Approval Ratio, Disbursement Ratio and Repayment Ratio. Additionally, the median GDP for each economic sector will be used to complement the analysis.
-The choice of the median as statistical measure is intentional as it is less sensitive to outliers. Using the median will ensures that extreme values (outliers) do not disproportionately influence the clustering outcomes.
-Furthermore, the standardisation of both the FIs Preference Score and GDP values will mitigate the effects of scale differences and reduce the dominance of sectors with disproportionately large values. This process enhances the comparability and interpretability of the clusters, facilitating a more accurate identification of sectoral patterns based on normalised financing preferences and macroeconomic contributions.
-The Elbow method will be applied to identify the best -means by computing the Within-Cluster Sum of Squares (WCSS). The equation for WCSS can be expressed in Equation 3.22.
-where  is a data point in cluster i and  is the centroid of cluster i. While the  denotes the Euclidean distance, which is most common distance used in -means that can be formulated in Equation 3.23.
-where  is a data point in cluster i and  is cluster centroid. While the n is the number of dimensions.
-After assigning data points to clusters, the centroids are calculated as the mean of all data points within each cluster using the Equation 3.24.
+## Visualizations
 
+- Time-series of approved loans by sector
+- Feature importance bar plot (Random Forest)
+- Elbow plot for optimal cluster count
+- Cluster scatter plot (Preference Score vs GDP)
 
+## Citation
 
+If you use this work, please cite:
+> Esa, M. W. B. (2025). *Assessing Financial Institutions’ Sectoral Preferences in SME Financing in Malaysia Using Machine Learning and Clustering Analysis*. Universiti Kebangsaan Malaysia.
 
+## Contact
 
-Results and Discussion
-INTRODUCTION
-This chapter presents the empirical results generated to address the three primary objectives outlined in Section 1.3. The analysis applies machine learning (ML) models to SME financing data across Malaysia’s economic sectors and focuses on three core financial ratios: the Approval Ratio, Disbursement Ratio and Repayment Ratio. These metrics are used to assess patterns in loan allocation, execution and repayment between July 2021 and January 2025.
-Figure 4.1 provides an overview of approved SME financing by economic sector. Sectors such as Wholesale and Retail Trade, Construction, Real Estate Activities, and Manufacturing received the largest share of approved financing with approval percentages ranging from 14.5% to 25.3% during the observed period. In contrast, the remaining sectors accounted for lower approval rates, ranging between 0.2% to 5%.
-
-To complement this sectoral analysis, Figure 4.2 illustrates SME loan approvals by type of FIs. The findings indicate that commercial banks and Islamic banks were the primary providers of SME financing, with the commercial banks accounting for the highest share at 55.5%, followed by Islamic banks at 40.6% during the observed period. Development financial institutions (DFIs) played a moderate role, contributing 3.6%, while investment banks had a minimal share of just 0.4%.
-
-Figure 4.1	Approved Financing by Economic Sectors
-
-
-Figure 4.2	Approved Financing by Financial Institutions
-RESULTS
-Financial Ratios
-Figure 4.3 illustrates the yearly trends of the median values for three financial ratios, namely Approval Ratio, Disbursement Ratio and Repayment Ratio, covering the period from July 2021 to January 2025 for the Agriculture, Forestry and Fishing sector.
-
-Figure 4.3	Median Ratios for Agriculture, Forestry and Fishing
-The Disbursement Ratio emerges as the dominant component throughout the analysis, indicating that financial institutions actively disburse loans once they are approved. Over much of the observed period (2021 to 2025), this ratio fluctuates within a range of approximately 3.52 to 5.28. A downward trend was observed from 2021 (4.02) to 2023 (3.52), suggesting reduced financing activity during these years. However, the ratio rebounded in 2024 (3.70), indicating renewed momentum in loan disbursements.
-Similarly, the Approval Ratio showed an upward trend over the same period, increasing from 0.31 in 2021 to 0.42 in 2022, 0.44 in 2023, and 0.5 in 2024. In early 2025, the ratio remained relatively stable at 0.49. These increasing trends may reflect targeted policy initiatives that temporarily increase loan approval rates during specific periods.
-The Repayment Ratio remains relatively stable and is characterised consistently, typically ranging between 1.0 and 1.12. This suggests a moderate but steady repayment behaviour among borrowers. A slight upward trend from 2024 to 2025 may reflect marginal improvements in borrower repayment capacity or enhancements in recovery strategies employed by FIs.
-When the three ratios are presented in a stacked format, the data revealed upward trends from 2024. These trends may correspond to agricultural planting or improved harvesting, which drive an increase in financing demand.
-Overall, the prominence of the Disbursement Ratio suggests that once loans are approved, funds are generally released efficiently. However, the variability in the Approval Ratio and the modest nature of the Repayment Ratio point to the need for further investigation into factors such as sector-specific creditworthiness, seasonal lending trends, or the influence of government incentives on lending patterns.
-
-Figure 4.4	Median Ratios for Mining and Quarrying
-Figure 4.4 illustrates the yearly trends of the median values for three key financial ratios: Approval Ratio, Disbursement Ratio and Repayment Ratio for the Mining and Quarrying sector over the period from July 2021 to January 2025.
-The Disbursement Ratio emerges as the dominant component, consistently contributing the highest proportion to the total ratio values. Notable peak is observed in 2023 (2.61) before slowed down in 2024 (2.24) and recorded the lowest point in 2025 (1.05), suggesting significant decreases in loan disbursement activity during these years.
-Meanwhile, the Approval Ratio remains lower than the Disbursement Ratio but showed fluctuations. Elevated approval levels occur in 2022 (0.40) and highest in 2025 (0.71). These peaks suggest intermittent surges in lending confidence, potentially influenced by positive sector outlooks or regulatory incentives encouraging investment in mining.
-The Repayment Ratio is consistently improving, ranging from 0.79 to 1.47, with a strong upward trend noted from 2021 to 2025. This increase may indicate improvements in borrowers’ repayment capabilities or more effective loan recovery strategies implemented by financial institutions.
-Volatility is evident across all three ratios, especially the Disbursement Ratio, which exhibits year-to-year fluctuations. This pattern reflects the capital-intensive nature of mining activities.
-Overall, the data indicate that the Mining and Quarrying sector experiences sporadic but significant financing activity, particularly in terms of disbursements tied to high-value projects.  Moderate but fluctuating approval ratios imply cautious but responsive lending behaviour by financial institutions. Meanwhile, the relative stability and gradual improvement in repayment performance suggest progress in financial discipline within the sector or enhanced enforcement mechanisms by lenders.
-
-Figure 4.5	Median Ratios for Manufacturing
-The “Median Ratios for Manufacturing” presented in Figure 4.5 illustrates yearly trends for three financial ratios: the Approval Ratio, Disbursement Ratio and Repayment Ratio, in the Manufacturing sector from 2021 to 2025.
-The Disbursement Ratio consistently dominates the chart, indicating that once loans are approved, the majority are effectively disbursed. Notable upward trends occurred in 2022 (2.76), 2023 (3.25), 2024 (3.68) and 2025 (5.10), suggesting robust financial support during these years.
-The Approval Ratio shows variability, with downward trends beginning in 2022 (0.51) and ending in 2025 (0.35). It is unclear why the disbursement ratio experienced upward trends while the approval ratio struggled to increase.
-However, the Repayment Ratio maintains slight stability throughout the duration of the study, with minor shrinking from 2023 (0.97) to 2025 (0.92). This stability suggests a consistent level of borrower discipline and a manageable repayment environment within the manufacturing sector.
-The data suggests that the Manufacturing sector is on a positive financing trajectory, characterised by rising Disbursement Ratios. This trend suggests growing confidence among lenders in the sector’s growth potential.
-
-Figure 4.6	Median Ratios for Electricity, Gas, Steam and Air Conditioning Supply
-The “Median Ratios for Electricity, Gas, Steam and Air Conditioning Supply” shown in Figure 4.6 illustrates the yearly trends of median financial ratios from 2021 to 2025. The chart displays strong improvement, particularly in the Disbursement Ratio, which is both volatile and dominant. Notable upward trends occurred from 2022 (0.67), 2023 (1.08), and 2024 (1.07). This is likely reflecting the launch of a major infrastructure or capital investment project.
-The Approval Ratio remained relatively low between 2021 (0.23) and 2024 (0.27), with the exception of a surge in 2025 (0.66). This varying approval pattern may reflect the high costs and risks associated with utility projects. The Repayment Ratio ranged between 0.71 and 1.51, with slight increases observed in 2024 and 2025.
-Overall, this sector experienced improved financing patterns but with varying loan approvals. The increasing Repayment Ratio suggests dependable loan servicing, highlighting the sector’s reliance on long-term, capital-intensive financing models supported by cautious lending practices.
-
-Figure 4.7	Median Ratios for Water Supply, Sewerage, Waste Management and Remediation Activities
-The “Median Ratios for Water Supply, Sewerage, Waste Management and Remediation Activities”, as shown in Figure 4.7 conveys yearly data from 2021 to 2025. The sector has experienced lower financial ratios in 2021 during the COVID-19 pandemic.
-However, the Disbursement Ratio, which dominates the chart, recorded strong upward trends from 2021 (0.86), 2022 (2.00), 2023 (2.07), 2024 (3.64) and 2025 (3.69). Significant hikes appeared in 2022 and 2024, suggesting large-scale infrastructure investments.
-The Approval Ratio displays moderate and sporadic activity, generally fluctuating between 0.23 and 0.36, with notable peaks in 2022 (0.36) and 2024 (0.33). These peaks may correspond to policy incentives or targeted funding programmes aimed at service improvement.
-The Repayment Ratio demonstrates remarkable stability over time, typically ranging between 0.79 and 1.09 with minimal improvement from 2022 to 2025. This indicates disciplined repayment behaviour despite the sector’s high capital requirements. The lack of direct alignment between approval and disbursement surges suggests that previously approved projects may be progressing to execution phases.
-
-Figure 4.8	Median Ratios for Construction
-The “Median Ratios for Construction” in Figure 4.8 presents a yearly overview from 2021 to 2025. It can be observed that the median financial ratios for this sector are relatively stable. The Approval Ratio displays stable but varying, ranging between 0.46 and 0.51. The difference of 0.05 in range is relatively small, indicating high confidence among financial institutions.
-The Disbursement Ratio values typically range between 1.38 and 1.95, indicating a steady level of loan disbursement throughout the observed period. A notable peak (1.95) was recorded in 2022, indicating a strong project rollout with financing support.
-The Repayment Ratio consistently exhibits stability, remaining within the range of 1.0 to 1.06. This stability suggests reliable loan servicing behaviour in the construction sector. Furthermore, a slight increase in the repayment ratio was observed in 2023, indicating marginal improvements in borrowers' repayment performance.
-Stable financial ratios indicate renewed construction momentum, possibly supported by public infrastructure investments or recovery efforts following earlier slowdowns during the COVID-19 pandemic.
-
-Figure 4.9	Median Ratios for Wholesale and Retail Trade
-The “Median Ratios for Wholesale and Retail Trade” as shown in Figure 4.9 illustrates the yearly performance of three median financial indicators: the Approval Ratio, Disbursement Ratio and Repayment Ratio covering the period from 2021 to 2025 within the Wholesale and Retail sector.
-The Approval Ratio remains within a modest range throughout the observed period. The sector experienced typical fluctuations between 0.42 and 0.49, with notable exceptions in 2022 (0.48) and 2024 (0.49). The higher approval values during these years may indicate seasonal financing needs.
-The Disbursement Ratio is consistently dominant, indicating a robust flow of financing once loans are approved. The ratio predominantly increasing from 2022 (2.63), 2023 (3.00), 2024 (3.92) and 2025 (6.04). These increases may reflect a strong consumers demand that possibly aligned with consumer cycles such as festive seasons.
-The Repayment Ratio remains relatively stable and consistent, typically ranging from 0.9 to 1.03. This stability suggests a steady and disciplined repayment behaviour among businesses within the Wholesale and Retail Trade sector. The Repayment Ratio exhibits resilience across all periods, even amidst surges in disbursement activity.
-Overall, the Wholesale and Retail Trade sector exhibits healthy financing behaviours. The FIs maintain moderate levels of loan approval, but once loans are approved, they tend to be rapidly and substantially disbursed. The stable repayment patterns further reinforce the sector’s credibility, suggesting a low credit risk profile despite the fast-paced and cash-dependent nature of operations. The upward trend observed at the end of the period may serve as an early indicator of growing demand and potential business expansion following an economic recovery.
-
-Figure 4.10	Median Ratios for Accommodation and Food Service Activities
-The “Median Ratios for Accommodation and Food Service Activities” displayed in Figure 4.10 provides a visual representation of the yearly performance of three median financial ratios from 2021 to 2025. This chart specifically addresses the hospitality and food services sector.
-The Approval Ratio exhibits periodic increases, with notable peaks in 2022 (0.35) and 2024 (0.34). Although the overall trend in approvals appears modest, these spikes suggest intermittent surges of confidence among financial institutions, potentially linked to seasonal demand or recovery initiatives aimed at boosting tourism within the sector.
-The Disbursement Ratio constitutes the dominant component within the chart. However, it remains relatively modest in scale, primarily ranging between 0.99 and 1.25. Peaks are observed in 2022 (1.25) and 2023 (1.21). These observations indicate moderate levels of loan disbursement, which may reflect the cautious investment climate in this service-oriented and pandemic-sensitive sector.
-The Repayment Ratio remains stable and consistent, generally fluctuating between 0.77 and 0.97. This stability reflects responsible repayment behaviour by businesses in the sector, even in an industry that is notably sensitive to economic disruptions.
-This sector maintains a moderate and steady financing profile throughout the reviewed period. This is a result from government commitment to support hospitality and food services sector.
-
-Figure 4.11	Median Ratios for Transportation & Storage
-The “Median Ratios for Transportation & Storage” as shown in Figure 4.11 illustrate the yearly trends from 2021 to 2025 for the financial ratios. The sector experienced upward trends in the end of the observed period.
-The Approval Ratio exhibits stable trends between 2021 to 2024 with the range of 0.44 to 0.44. However, the ratio experienced shortfall in beginning of 2025 (0.24).  The stable trends of the first part of the observed period likely reflect increased lender confidence or targeted financial support for transport infrastructure.
-The Disbursement Ratio consistently represents the largest component of the chart, typically fluctuating between 1.21 and 2.93. This trend indicates a steady flow of financing aimed at supporting logistics and transport operations.
-The Repayment Ratio remains stable and moderate, ranging from 0.90 to 1.09, with a slight upward trend apparent in 2024 and 2025. This stability indicates reasonably healthy repayment behaviour among entities in the sector. These patterns may be driven by factors such as e-commerce cycles or broader global trade dynamics.
-
-Figure 4.12	Median Ratios for Information & Communication
-The “Median Ratios for Information & Communication” in Figure 4.12 illustrates a strong fluctuation experienced within the sector. The sudden uptrends in the total ratios could represent the emerging environment within the businesses in the sector. The Approval Ratio shows down trends, significantly in 2022 (0.37) to 2024 (0.32) and abrupt decrease in 2025 (0.19). These trends in approval ratio may reflect the uncertainty in lender confidence, particularly concerning the implementation of 5G technology and the delayed digital transformation efforts at national level.
-The Disbursement Ratio prominently dominates the chart, underscoring the capital-intensive nature of the sector. Significant spikes are observed in 2022 (1.75), 2024 (1.93) and 2025 (2.91), reflecting substantial bursts of financing likely associated with national digitalisation initiatives or surges in private technological investments.
-The Repayment Ratio displays relative stability, generally fluctuating between 0.86 and 1.06. The improvement in repayment ratio could suggest strong emerging environment in digital projects by combined support from government initiatives and potential foreign investments.
-In conclusion, the Information and Communication sector displays improving financing trends, with businesses primarily supported on a project-driven basis. This, however, may pose a challenge for businesses seeking financing in the highly competitive economic environment.
-
-Figure 4.13	Median Ratios for Financial and Insurance/Takaful Activities
-Figure 4.13 illustrates the yearly trends of median values for three financial ratios within the Financial and Insurance/Takaful Activities from 2021 to 2025. The sector experienced strong fluctuations, especially in the Disbursement Ratio. The Approval Ratio remains relatively low throughout the observed period, typically ranging between 0.24 and 0.51, even during instances of massive disbursement. For example, in 2024, the Approval Ratio was 0.37 while the Disbursement Ratio reached 2.94. Similarly, in 2025, the Approval Ratio was only 024 alongside a Disbursement Ratio of 4.39. This disconnect suggests that a substantial number of disbursements may be originating from previously approved credit facilities, rolling funds, or internal transfers that do not require new approval cycles.
-The Disbursement Ratio prominently dominates the chart, displaying exceptionally upward trends in 2023 (1.81), 2024 (2.94) and 2025 (4.39). These higher ratios are significantly associated with institutional fund movements, capital injections, or substantial financial settlements. The irregular and high magnitude of these disbursements implies that funding within this sector is lumpy, characterised by infrequent large transactions rather than consistent, evenly distributed financial flows.
-Repayment ratios demonstrate relative stability and modest levels, typically fluctuating between 0.89 and 1.26. This consistency sharply contrasts with the increments seen in disbursement ratios, emphasising a dependable repayment behaviour that remains intact even during periods of high-volume financial activity.
-The financial service sector notably experiences episodic financial surges, which differ from the steady year-to-year cash flow patterns typical in consumer-oriented sectors. The observed spikes in disbursement appear to correlate with specific events such as insurance claim cycles, investment product maturities and liquidity movements within financial institutions. Additionally, the relatively flat trend in approval activity emphasised the structured and potentially pre-approved nature of many transactions within this sector.
-
-Figure 4.14	Median Ratios for Real Estate Activities
-Figure 4.14 presents the yearly trends in three median financial ratios within the real estate sector from 2021 to 2025. The chart shows fluctuation trends in the Disbursement Ratio during the observed period. Similarly, the Approval Ratio also exhibits fluctuations across the years, ranging from 0.16 to o.53. This pattern may be influenced by the nature of the real estate sector and its vulnerability to interest rate changes and recent reports on mismatching supply and demand.
-The Disbursement Ratio predominantly features stronger values, generally ranging between 0.97 and 2.27. The exceptionally high disbursement ratio in 2025 may be linked to a large-scale property transaction or substantial institutional investment. The Repayment Ratios are relatively modest but suffered a smaller ratio towards the end of the observed period, ranging from 0.81 to 1.23. This downward trend in repayment may indicate some gradual lower real estate transactions.
-In summary, the real estate sector demonstrates steady financing patterns that are marked by stable, increasing disbursement behaviours. This reveals the capital-intensive nature of real estate, where substantial sums may be disbursed in alignment with specific projects.
-
-Figure 4.15	Median Ratios for Professional, Scientific and Technical Activities
-Figure 4.15, titled “Median Ratios for Professional, Scientific and Technical Activities," displays yearly financial trends from 2021 to 2025. This service-oriented knowledge sector, which includes engineering, consulting and research and development (R&D), exhibits consistently balanced ratios throughout the years. The Approval Ratio exhibits stable trends, with values varying between 0.32 and 0.43. This indicates similar levels of confidence from financial institutions across the examined period.
-The Disbursement Ratio constitutes the largest portion of the bars, reflecting consistent transactions throughout the observed period. The disbursement values typically ranging between 1.77 and 2.88. The ratio gradually increased through the examined period with 2021 (1.77), 2022 (1.77), 2023 (1.78), 2024 (2.51) and 2025 (2.88). These incremental indicate improved loan disbursement activities to support project-based funding cycles of this sector.
-Similarly, the Repayment Ratios maintain consistent stability, generally falling within the range of 1.03 to 1.11. Minor increases are observed in 2025, recording a ratio of 1.11. This rise may indicate effective financial management within the sector.
-Cumulatively, the Professional, Scientific and Technical sector exhibits healthy financing behaviour characterised by steady levels of approvals and disbursements, alongside stable repayment patterns. A concurrent rise in all three ratios from 2023 into 2024 may reflect heightened activity for consultancy services following the recovery from the COVID-19 pandemic.
-
-Figure 4.16	Median Ratios for Administrative and Support Service Activities
-Figure 4.16 depicts the yearly median of financial ratios from 2021 to 2025 for the Administrative and Support Services Activities Sector. The sector also exhibits a balanced distribution across the ratios in the observed period. The Approval Ratio exhibits significant variability, with values ranging from 0.31 to 0.43. Several elevated values, such as 2023 (0.38) and 2023 (0.43). This variability suggests periodic surges in confidence among financial institutions, likely driven by short-term booms in the service sector, particularly during peak hiring periods.
-The Disbursement Ratio consistently constitutes the largest segment of each yearly bar, typically ranging from 1.38 to 2.53, indicating a steady capital outflow following loan approvals. Significant peaks are observed in 2023 (1.92) and 2025 (2.53). These spikes suggest seasonal or project-based funding surges, potentially linked to contract cycles or periods of heightened demand for outsourced services.
-Repayment Ratio remain relatively stable, ranging between 0.90 and 0.99, signalling a regular loan servicing behaviour amid consistent repayment practices. Despite moderate repayment levels, the stability of the ratio throughout period characterised by high disbursements suggests effective debt management within the sector.
-In summary, the Administrative and Support Service Activities sector exhibits consistent financial activity marked by stable disbursements, fluctuating approval rates and steady repayment behaviours. Stable repayment behaviours suggest low to moderate credit risk, making the sector suitable for short- to medium-term financing opportunities.
-
-Figure 4.17	Median Ratios for Education, Health and Others
-The “Median Ratios for Education, Health and Others” in Figure 4.17 illustrates the yearly financial trends from 2021 to 2025 for sectors such as education services, healthcare and various social support activities. The Approval Ratio exhibits moderate variation, generally ranging between 0.29 and 0.39. Lower approval ratios are subjected to careful consideration from financial institutions followed by challenging market environment.
-The Disbursement Ratio is dominant in the chart, with values ranging from 1.30 to 2.92. This indicates a consistent provision of financial support through loan disbursements over time. Likewise, the Repayment Ratio demonstrates consistent stability, fluctuating between 0.98 and 1.05. This indicates strong and disciplined repayment behaviour across the observed period. This stability suggests a low risk for financial institutions and reflects a culture of financial responsibility prevalent within the education and healthcare services sectors.
-In a nutshell, the Education, Health and Others sector demonstrates balanced financial ratios. This reflects reliable borrower behaviour and adequate FIs support.
-
-Figure 4.18	Median Ratios for Other Sector
-The final sector in this section is the Other Sector. This sector is listed as an unclassified sector in the Financial Inclusion reporting. An example of the unclassified sector would be entities like businesses or non-governmental organisations providing services. Figure 4.18 illustrates the yearly financial trends from 2021 to 2025. The Approval Ratios are typically fluctuating, ranging from 0.24 to 0.47. Significant approval ratios are noted in 2022 (0.47) and 2024 (0.45). Similarly, the Disbursement Ratio exhibits considerable variation across the timeline, with several peaks, particularly in 2021 (1.50) and 2023 (2.45).
-In contrast, the Repayment Ratio demonstrates greater fluctuation. The fluctuations range from 1.11 to 2.24. This sharp spike indicates aggressive repayment behaviour followed by the disbursement peak during the same month. The chart shows irregular spikes in both disbursement and repayment ratios, without a steady seasonal trend. Nonetheless, there are occurrences of sudden repayment behaviour. Drawing conclusions for this sector is difficult due to the absence of specific data on businesses or non-governmental organisations.
-
-Figure 4.19	Median Financial Ratios by Sector
-Figure 4.19, titled "Median Financial Ratios by Sector", illustrates the performance of 16 economic sectors in Malaysia using three key financial ratios: Approval Ratio, Disbursement Ratio, and Repayment Ratio. Each stacked bar represents to a sector, with ratio values labelled within colour-coded segment, allowing for clear visual comparisons of median values.
-
-From left to right, the chart spans sectors beginning with Accommodation and Food Service Activities and ending with Wholesale and Retail Trade. The Repayment Ratio, shown in red at the bottom of each bar, generally ranges between 0.9 to 1.1 across most sectors, indicating stable repayment patterns. Notably, the Professional, Scientific and Technical Activities records the highest repayment ratio at 1.3, while Financial and Insurance/Takaful Activities shows the lowest at 0.7, suggesting disparities in repayment performance.
-The Disbursement Ratio, shown in orange, varies more widely. Agriculture, Forestry and Fishing records the highest disbursement ratio at 3.7, indicating substantial loan disbursements in this sector. Wholesale and Retail Trade, Manufacturing, and Information & Communication also exhibit relatively high disbursement ratios (3.0, 3.3, and 2.2, respectively), reflecting strong financing support. On the other hand, Electricity, Gas, Steam and Air Conditioning Supply and Education, Health and Others exhibit lower disbursement ratios (1.4 and 1.7), possibly reflecting reduced credit demand or stricter lending criteria.
-The Approval Ratio, highlighted in blue at the top of each stack, typically falls within the 0.3 to 0.5 range. Construction, Real Estate Activities, and Wholesale and Retail Trade show the highest approval ratios at 0.5, reflecting a relatively favourable approval rates. In contrast, sectors like Accommodation and Food Service Activities, Electricity, Gas, Steam and Air Conditioning Supply, and Mining and Quarrying report lower approval ratios of 0.3, suggesting either lower quality applications or more conservative lending practices.
-Overall, the chart offers an insightful snapshot of financing dynamics across sectors. It highlights how financial institutions’ lending behaviour differ in terms of loan approval, disbursement, and repayment performance. For instance, Agriculture, Forestry and Fishing and Manufacturing receive higher financing and exhibit solid repayment, while Financial and Insurance/Takaful Activities show weaker repayment patterns despite moderate disbursement and approval levels. This comparison highlights potential areas of policy focus or risk management for stakeholders involved in SME and sectoral development financing.
-Machine Learning Models Comparison
-Table 4.1 compares nine classification models trained on three financial indicators: Approval Ratio, Disbursement Ratio and Repayment Ratio to predict SME sector categories. The models are evaluated using Accuracy, Precision, Recall, F1-score and AUC-ROC, each offering complementary insights into model performance.
-Table 4.1	ML Models Comparison
-It is important to note that while all models show relatively low accuracy values (below 0.20), this is expected given the complexity and potential class imbalance in the dataset, or the presence of overlapping features across economic sectors. Consequently, greater emphasis is placed on AUC-ROC as more reliable indicator of classification performance.
-In evaluating the ML models, a Stratified Cross-Validation (CV) method was used in the analysis. This approach ensures that each fold retains the proportion of sector classes, making comparisons more reliable. Using the Stratified CV method, the RF model yields the best overall performance, with an accuracy of 0.1984, an F1-score of 0.1939 and an AUC-ROC of 0.7002. Its ability to handle nonlinear and high-dimensional data makes it especially effective for this classification task.
-This is closely followed by GB, which demonstrates an accuracy of 0.1893, an F1-score of 0.1823 and the highest AUC-ROC at 0.7190. Its robust class separability signifies exceptional performance in differentiating between various categories, thereby enhancing its competitive position among the evaluated models. Next, DT demonstrates moderate performance, achieving an accuracy of 0.1577, an F1-score of 0.1545 and an AUC-ROC of 0.5586. While it lacks the ensemble strength of other models, it benefits from faster training times, which is particularly advantageous in situations where time efficiency is critical.
-In this analysis, k-NN records an accuracy of 0.1479, an F1-score of 0.1401 and an AUC-ROC of 0.6080. While its AUC-ROC performance is acceptable, k-NN shows sensitivity to data scaling and local structural patterns, which can greatly affect its efficacy. Similarly, AdaBoost demonstrates an accuracy of 0.1341, a notably low F1-score of 0.0950 and an AUC-ROC of 0.6583. While it achieves a reasonable AUC-ROC, the low F1-score suggests potential issues with overfitting or inadequate class balancing, which can detract from its predictive power.
-Likewise, LR demonstrates weak linear performance on the complex data, yielding an Accuracy of 0.1010, an F1-score of 0.0749 and an AUC-ROC of 0.5587. Its limitations suggest that it is ill-suited for datasets requiring more sophisticated modelling techniques. In like manner, NN displays an Accuracy of 0.1145, an F1-score of 0.0672 and an AUC-ROC of 0.6293. While it achieves a decent AUC, the poor precision and recall metrics indicate the need for better hyperparameter tuning or access to a more comprehensive dataset to improve its learning capacity.
-The SVM performs equally poorly across all metrics, with an Accuracy of 0.1061, an F1-score of 0.0513 and an AUC-ROC of 0.5860. These results suggest that it may be underfitting the data or failing to effectively capture the underlying class boundaries.
-Lastly, the NB model scores an Accuracy of 0.0948, an F1-score of 0.0465 and an AUC-ROC of 0.5809, indicating poor classification performance. This inadequacy is likely attributable to its strong independence assumptions, which may not be valid in the present context.
-Overall, the table illustrates the differing efficiency of various ML models in classification tasks, with ensemble methods, such as RF and GB, demonstrating superior performance compared to other classifier models.
-
-Figure 4.20	F1-score by Machine Learning Models on Financial Ratios
-The “F1-score by Machine Learning Models on Financial Ratios” as shown in Figure 4.19 provides a visual comparison of the classification performance of nine ML models by focusing on the F1-score. As known, the F1-score serves as a metric balancing Precision and Recall performance. In this case, RF model achieved the highest F1-score of 0.19. This indicates the best balance between precision and recall among all evaluated models. While GB model followed closely, it attained an F1-score of 0.18.
-Consequently, the F1-score serves as the decisive factor in selecting the RF model for the analysis in the subsequent part of the research. RF is selected for further analysis, which is consistent with existing literature favouring ensemble methods for structured financial data classification.
-Confusion Matrix
-
-Figure 4.21	Confusion Matrix for Random Forest
-Figure 4.20 illustrates the confusion matrix generated from the Random Forest model, highlighting prediction accuracy across the 16 economic sectors.
-The “Other Sector” recorded the highest number of correctly classified instances (21), followed by 'Wholesale and Retail Trade' with 20 correct predictions. Moderate performance (15 correct predictions) was observed in both “Agriculture, Forestry and Fishing” and “Electricity, Gas, Steam and Air Conditioning Supply”.
-Moderate classification performance (between 10 and 14 correct predictions) was observed in sectors such as “Accommodation and Food Service Activities”, “Real Estate Activities”, “Financial and Insurance/Takaful Activities” and “Construction”, indicating relatively stable model performance in these categories.
-On the lower end of the spectrum, “Water Supply, Sewerage, Waste Management and Remediation Activities” achieved only one correct prediction, while “Transportation & Storage” and “Education, Health and Others” had just four correctly classified instances each.
-These disparities highlight challenges in classifying certain sectors, likely due to factors such as class imbalance, overlapping financial characteristics, or insufficient representation in the training data. This underscores the importance of further feature engineering and sampling strategies to improve model performance in underrepresented categories.
-Feature Importance
-
-Figure 4.22	Financial Ratios Importance by Random Forest
-
-The RF classifier was employed to derive the importance scores for three key financial ratios: Approval Ratio, Disbursement Ratio and Repayment Ratio. As visualised in Figure 4.21, the Repayment Ratio emerged as the most influential feature with a weight of 0.43 (43%), followed by the Disbursement Ratio at 0.29 (29%) and the Approval Ratio at 0.27 (27%).
-The dominance of the Repayment Ratio underscores the critical role of repayment history in influencing sectoral lending decisions. This finding suggests that financial institutions may prioritise repayment performance when evaluating future financing, potentially reflecting concerns about credit risk. The lower weight assigned to the Approval Ratio may indicate relatively uniform approval trends across sectors, offering less discriminatory power for prediction.
-Analytic Hierarchy Process (AHP) Using Feature Importance
-In the context of machine learning, the AHP can be integrated with feature importance scores to support a Multi-Criteria Decision-Making (MCDM) approach, as demonstrated by Abdulla and Baryannis (2024). In this study, the feature importance values were used as weights for each criterion. Each weight was multiplied by its corresponding value and then was summed to generate a composite score representing each economic sector. This composite score, referred to as FIs' Preference Score, is calculated using Equation 4.1 below:
-Table 4.2 presents the resulting scores alongside each sector’s GDP contribution.
-Table 4.2	AHP Using Feature Importance (FIs Preference Score)
-…to be continued
-…continuation
-Table 4.2 highlights the selected year 2021 in institutional financing preferences. For example, “Manufacturing” and “Wholesale and Retail Trade” recorded some of the highest scores, consistent with their roles as key drivers of economic activity. In contrast, sectors like “Mining and Quarrying” and “Real Estate Activities” had much lower scores, potentially reflecting perceived volatility or capital risk. Interestingly, the “Other Sector” recorded an unusually high score (7.24), warranting closer examination due to possible data heterogeneity or sector classification issues.
-These scores serve as inputs for the clustering analysis in the next section, which explores how financing patterns align or diverge from GDP contributions across Malaysia’s economic sectors.
-Clustering Analysis
-# The clustering will adopt the median FIs Preference Score which is a sum of weighted values derived from financial ratios such as Approval Ratio, Disbursement Ratio, and Repayment Ratio. Additionally, the median GDP for each economic sector will be used to complement the analysis.
-This section applies -means clustering using the median FIs Preference Score and median GDP for each economic sector. Standardising both the FIs Preference Score and GDP values will mitigate the effects of scale differences and reduce the dominance of sectors with disproportionately large values. The goal is to group sectors with similar financial and economic characteristics to uncover patterns in institutional lending.
-To determine the optimal number of clusters (), the Elbow method was used. As shown in Figure 4.22, the within-cluster sum of squares (WCSS) decreases rapidly up to , after which the reduction plateaus. This inflection point suggests that four clusters best capture the structure in the data. Figure 4.23 presents the four-cluster solution. The clusters are colour-coded for clarity: red (Cluster 1), orange (Cluster 2), green (Cluster 3) and blue (Cluster 4).
-
-Figure 4.22	Elbow Method for Optimal k (FIs Preference Score vs GDP)
-
-Figure 4.23	Clusters for FIs Preference Score vs GDP
-The clustering analysis successfully grouped the points according to similar characteristics. From the observations, the red points are located at the bottom left, while the orange points are approximately central, the green point is centre right and the blue points are at centre top.
-
-Figure 4.24	Cluster 1
-As shown in Figure 4.24, Cluster 1 (Red) includes ten sectors with low FIs Preference Scores (from 0.9 to 1.37) and low-to-mid GDP values (from RM2 to 26 billion). This cluster likely reflects sectors receiving limited financial attention from FIs, possibly due to risk factors or underperformance. The wide sectoral mix suggests systemic challenges in attracting institutional financing.
-Figure 4.25 displays Cluster 2, or the orange clusters. The orange clusters have a moderate range of FIs Preference Score from 1.35 to 1.57. This moderate position in FIs Preference Scores reflects a level of financial confidence towards this cluster. The cluster is represented by strong industries contributing to GDP, ranging from RM27.5 billion to RM47 billion. This mid-range cluster includes sectors from Mining and Quarrying, Financial and Insurance/Takaful Activities and the unclassified sector known as Other Sector.
-
-Figure 4.25	Cluster 2
-The Cluster 3 is shown in Figure 4.26. The Cluster 3 or green cluster is represented by a single economic sector: Agriculture, Forestry and Fishing. Despite being the only member of this group, the cluster has the highest FIs Preference Score, with a value of 1.89, alongside a mid-range GDP value of RM39.5 billion. The characteristics depict a disproportionately strong institutional support, potentially due to national strategic importance or targeted subsidy schemes.
-Finally, Cluster 4 or the blue clusters are shown in Figure 4.27. The blue clusters represented by Manufacturing and Wholesale and Retail Trade. This cluster are distinct due to their high GDP contributions (above RM59 billion) while having above average FIs Preference Score.
-The clustering analysis reveals significant differences in how sectors are treated by financial institutions. While some high-GDP sectors are well supported, others lag despite their economic importance. These insights underscore the need for more inclusive financial strategies to rebalance sectoral disparities.
-
-Figure 4.26	Cluster 3
-
-Figure 4.27	Cluster 4
-
-
-
-Figure 4.28	Approval Ratio versus GDP Cluster Analysis
-
-Figure 4.28, titled “Approval Ratio vs GDP” illustrates clustering analysis between the median values (quarterly) of the Approval Ratio and the GDP. The Approval Ratio reflects the proportion of financing applications that are approved by financial institutions, while GDP signifies the sector's economic contribution.
-From a broad perspective, the chart reveals the distribution of sectors into three general clusters: sectors with high approval ratios and high GDP (over RM100 billion), sectors with low approval ratios and low GDP, and a central group with moderate performance in both dimensions.
-One of the most prominent observations is the position of the Manufacturing sector, which stands out in the top-right, exhibiting both the highest GDP and one of the highest approval ratios (0.50). This placement suggests that the manufacturing sector not only contributes significantly to the economy but is also a top priority for financing institutions, possibly due to its scale, stability, and strategic importance.
-Likewise, the Wholesale and Retail Trade sector occupies a strong position in the upper top-right region, with a GDP close to RM 80 billion and an approval ratio slightly below 0.475, indicating another sector that enjoys substantial financial access aligned with its economic weight.
-In contrast, sectors like Water Supply, Sewerage, Waste Management and Remediation Activities and Electricity, Gas, Steam and Air Conditioning Supply are situated in the lower-left quadrant, reflecting both low approval ratios (around 0.30) and low GDP contributions (under RM 10,000 million). These sectors may face structural or investment challenges that limit both their growth and attractiveness for financing.
-A few sectors such as Mining and Quarrying and Information & Communication show higher GDP values ranging between RM25 billion to RM 40 billion but have moderate to low approval ratios ranging 0.30 to 0.35. This suggests a potential mismatch between economic output and financing accessibility, which may warrant further policy attention or risk reassessment by lenders.
-Meanwhile, Construction, Transportation & Storage, and Real Estate Activities are positioned along the higher end of approval ratios ranging from 0.45 to 0.50 but with moderate GDP levels of between RM 15 billion to RM20 billion. These sectors may benefit from favourable lending conditions despite contributing less to overall GDP compared to manufacturing or wholesale trade.
-Sectors such as Agriculture, Forestry and Fishing, Other Sector, and Financial and Insurance/Takaful Activities are more centrally placed on the chart. These exhibit moderate approval ratios (around 0.40 to 0.44) and GDP ranging between RM 30 billion to RM45 billion, reflecting a balanced yet less prominent position in terms of both economic weight and financing access.
-Overall, this plot highlights the sectoral disparities in financial approval rates relative to economic output. Sectors like Manufacturing and Wholesale & Retail Trade are clearly favoured in both dimensions, while lower-end sectors may face systemic barriers to financing despite their developmental importance. These insights are valuable for financial institutions aiming to align credit strategies with economic priorities, and for policymakers focusing on equitable financing across all sectors.
-
-Figure 4.29	Disbursement Ratio versus GDP Cluster Analysis
-The scatter plot in Figure 4.29 visualises the clustering analysis between the Disbursement Ratio and GDP. The disbursement ratio reflects the median amount of financing disbursed relative to the amount of approved loans, serving as an indicator of how readily financing is being allocated within each sector.
-To the far right, the Agriculture, Forestry and Fishing sector displays the highest disbursement ratio (3.7) among all sectors, despite a more moderate GDP contribution of around RM 39.5 billion. This positioning indicates a disproportionately high level of financing being channelled into this sector relative to its economic output, which may reflect targeted support initiatives or high value agricultural projects.
-From the chart, the Manufacturing and Wholesale and Retail Trade sector also benefited from high disbursement ratio around 2.9 to 3.3 despite being the highest GDP (over RM 79.5 billion). However, this suggests that both sectors benefited from continuous confidence from financial institutions.
-In contrast, sectors like Electricity, Gas, Steam and Air Conditioning Supply, Accommodation and Food Service Activities, and Real Estate Activities are situated toward the lower-left, combining low disbursement ratios (ranging from 0.8 to 1.3) with low GDP contributions (below RM 20 billion). These sectors may be underserved in terms of financing or face institutional challenges such as high credit risk or low investment returns.
-In the mid-range of the chart, Mining and Quarrying and Financial and Insurance/Takaful Activities have moderate disbursement ratios (ranging from 2.0 to 2.3) but contribute moderately to GDP, indicating a more balanced but slightly conservative financing result in this part of the analysis. This indicates that, although they do receive some level of financing, it is neither excessively generous nor extremely conservative, reflecting a moderate lending appetite by financial institutions.
-In a nutshell, the analysis highlights key insights into sectoral financing patterns. While Manufacturing and Wholesale & Retail Trade are well-aligned in both economic output and disbursement support, Agriculture stands out as a potential beneficiary of strategic policy support. Conversely, low disbursement and low GDP sectors may require closer scrutiny to determine whether their financing needs are structurally lower or if barriers exist that impede their access to credit. These insights are vital for policymakers, financial analysts, and SME development agencies aiming to ensure equitable and productive financial resource allocation across the economy.
-
-
-
-Figure 4.30	Repayment Ratio versus GDP Cluster Analysis
-Figure 4.30, titled “Repayment Ratio vs GDP,” visualises the clustering analysis between the Repayment Ratio and GDP. The Repayment Ratio quantifies the proportion of loans repaid relative to those disbursed, offering insight into a sector's financial discipline or creditworthiness. The GDP, on the other hand, reflects the sector’s total economic contribution.
-At the central right, the Other Sector stands out with the highest repayment ratio (1.27) despite contributing a moderate GDP of around RM 48 billion. This suggests that although this sector is not among the most significant contributors to GDP, it exhibits excellent credit behaviour, potentially indicating conservative borrowing and strong repayment reliability. However, since the other sectors consist of an unclassified business nature, reasoning for this outcome is challenging to conclude.
-Similarly, the Manufacturing sector is notable for its very high GDP (RM 105 billion) and a repayment ratio around 0.97, indicating strong repayment performance commensurate with its vast scale of operations. This followed closely by the Wholesale and Retail Trade sector with the second-highest GDP (RM 79.5 billion) and a repayment ratio just below 0.95, showcasing reliable credit behaviour in a sector known for high transaction volumes and rapid cash flows.
-The centre of the chart shows Agriculture, Forestry and Fishing with repayment ratio around 1.03 and GDP of RM 39.5 billion. This sector reflects a balanced position in terms of repayment behaviour and economic contribution, implying a stable credit environment.
-The lower left of the chart includes sectors with low repayment ratios (below 0.95) and low GDP contributions (below RM 20 billion). These include Electricity, Gas, Steam, and Air Conditioning Supply and Accommodation and Food Service Activities. Their position suggests these sectors may face challenges in repaying loans, possibly due to tighter cash flows, smaller margins, or exposure to economic challenges.
-Overall, this scatter plot provides a multidimensional view of sectoral financial discipline in relation to economic size. Sectors like Other Sector and Real Estate Activities lead in repayment strength, whereas sectors in the bottom left might require enhanced financial initiatives, targeted lending policies, or stricter credit controls to improve repayment behaviour. The visual distribution helps identify which sectors are both financially sound and economically impactful and which may pose higher lending risks.
-SUMMARY
-This chapter analysed SME financing patterns across 16 economic sectors in Malaysia from July 2021 to January 2025. The analysis combined financial ratios and sectoral GDP to assess the lending preferences of financial institutions (FIs). ML classification and clustering techniques were used to extract insights from the data.
-Across most sectors, the Disbursement Ratio consistently emerged as the dominant metric, suggesting that loans are efficiently disbursed once approved. The Approval Ratio showed significant variation, with spikes occurring during certain months, likely influenced by macroeconomic or policy-related factors. Repayment Ratios remained relatively stable, implying consistent borrower discipline across sectors.
-Notably, the Financial and Insurance/Takaful Activities sector exhibited disproportionately high disbursement volumes despite relatively low approval ratios. Conversely, sectors such as Agriculture, Forestry and Fishing, Construction and Accommodation and Food Service Activities demonstrated stable repayment behaviour but received comparatively fewer approvals, highlighting potential misalignments in financing distribution.
-Ten classification models were evaluated using Stratified Cross-Validation. Among them, the RF model achieved the highest F1-score (0.1939) and a strong AUC-ROC (0.7002), outperforming other models, including Gradient Boosting (GB), Logistic Regression (LR) and Naïve Bayes (NB). Ensemble methods generally yielded better performance and RF was selected for downstream analysis.
-The AHP using feature importance analysis revealed that the Repayment Ratio was the most influential feature (43%), followed by Disbursement Ratio (29%) and Approval Ratio (27%). These weights were used to compute the FIs Preference Score for each economic sector, which was then compared against sectoral GDP to evaluate alignment between financial support and economic contribution.
-Finally, this research adopted clustering analysis, starting with the Elbow Method, which identified four as the optimal number of clusters. The findings show that Cluster 1 (Red) comprises 10 diverse sectors with low FIs Preference Scores and lower GDP contributions. Cluster 2 (Orange) consists of three (3) sectors: Mining and Quarrying, Financial and Insurance/Takaful Activities and Other Sector. This is followed by Cluster 3 (Green), which includes only a single sector (Agriculture, Forestry and Fishing), with a high preference score despite moderate GDP. The Manufacturing and Wholesale and Retail Trade sectors represent the final Cluster 4 (Blue), which has a characteristic of top contributors to GDP with above-average financial support.
-In conclusion, this chapter provides empirical evidence that combining machine learning classification with clustering enables a comprehensive analysis of SME financing patterns. By integrating financial ratios and GDP, this approach offers valuable insights for aligning institutional lending with economic development goals.
-All analyses and coding, unless stated otherwise, can be accessed through this GitHub link: .
-
-
-
-
-
-
-
-
-
-
-
-conclusion and future works
-CONCLUSION
-This research undertook a comprehensive analysis of SME financing patterns across Malaysia’s economic from July 2021 to January 2025. By integrating machine learning classification with clustering analysis, the study revealed institutional preferences for certain economic sectors, drawing on financial ratios and GDP data to quantify lending behaviour.
-Key findings highlighted the Repayment Ratio as the most influential variable in determining financing preferences, followed by Disbursement and Approval Ratios. Although disbursement rates were generally high once approvals were granted, approval ratios varied widely across sectors. Repayment patterns remained stable, suggesting consistent borrower behaviour.
-Through clustering analysis, four distinct groups were identified based on FIs Preference Scores and GDP contributions. These groupings reflect sector-specific lending tendencies and suggest differing levels of financial attention from institutions. The groups can be represented by ranking orders in Table 5.1 below.
-Table 5.1	Economic Sectors’ Preference Level
-…to be continued
-…continuation
-
-This analysis shows that financial support is not always aligned with economic output. Several sectors with mid to high GDP remain modestly supported, while others with relatively lower contributions receive disproportionate financial attention. These patterns may reflect unintentional institutional biases or the impact of policy-driven financing programs.
-Ultimately, the research achieved its objectives by demonstrating that the combination of machine learning classification and clustering can effectively uncover sectoral disparities in SME financing. The application of FIs Preference Scores offers a practical tool for evaluating financial ecosystem dynamics, providing insights that can guide more balanced, inclusive and evidence-based financing policies.
-FUTURE WORKS
-This study was conducted with a Random Forest (RF) classifier and clustering analysis to investigate SME financing preferences across Malaysian economic sectors. One of the primary limitations was the use of a single tuned hyperparameter setting for the RF model. Thus, future research should consider implementing hyperparameter optimisation strategies and expanding the analysis to include other robust ensemble learning techniques, such as Extreme Gradient Boosting (XGB) and LightGBM. These models are known for their scalability and high performance in structured data environments and may yield improvements in predictive metrics such as accuracy, precision, recall, F1-score and AUC-ROC.
-Enhanced model tuning and comparative analysis across classifiers could yield new insights into the determinants of financial institutions’ sectoral preferences. Integrating these methods with clustering may reveal different financing patterns, offering a more nuanced understanding of sector-level financial inclusion.
-Additionally, future studies should examine the temporal patterns observed in approval and disbursement ratios, particularly the sharp spikes that occurred in specific months. These may correspond to macroeconomic policy interventions or fiscal stimulus events. For instance, policies such as Skim Jaminan Pembiayaan Perniagaan (SJPP) and the Pelan Jana Semula Ekonomi Negara (PENJANA), implemented by financial institutions in partnership with the Malaysian government, were designed to increase financing access for SMEs in line with Bank Negara Malaysia’s financial inclusion agenda.
-A deeper investigation into how these initiatives influence sector-level lending patterns over time would strengthen the empirical basis for evaluating policy effectiveness. Future work that combines time-series analysis, policy tracking and machine learning could serve as a valuable decision-support tool for developing more equitable and data-driven SME financing frameworks.
-References
-Ahmad Abdulla and George Baryannis. 2024. A Hybrid Multi-Criteria Decision-Making and Machine Learning Approach for Explainable Supplier Selection. Supply Chain Analytics 7.
-Abdullah, S., & Mohamad, R. 2024. Predicting Credit Risk of SMEs in Malaysia: Machine Learning vs Deep Learning. Modern Artificial Intelligence and Data Science 2024, pp. 417-427.
-Bank Negara Malaysia. 2024. Credit Risk. pp. 10-11.
-Bank Negara Malaysia. 2023. Financial Inclusion Framework 2023 – 2026.
-Burietz, A. and Ureche-Rangau, L., 2020. Better the devil you know: Home and sectoral biases in bank lending. International Economics, vol. 164(C), pages 69-85.
-Bazarbash, M. 2019. Fintech in Financial Inclusion: Machine Learning Applications in Assessing Credit Risk. IMF Working Paper.
-Bart Baesens, Rudy Setiono, Christophe Mues, Jan Vanthienen. 2003. Using Neural Network Rule Extraction and Decision Tables for Credit Risk Evaluation. Management Science 49(3): pp. 312-329.
-Chungyu Yang. 2023. Research on Loan Approval and Credit Risk Based on the Comparison of Machine Learning Models. SHS Web of Conferences 181.
-Ciampi, F., Giannozzi, A., Marzi, G., & Altman, E. I. 2021. Rethinking SME default prediction: a systematic literature review. Scientometrics, vol. 126: pp. 2141-2188.
-Durojaiye, A. T., et al. 2024. Designing a machine learning-based lending model for SMEs. Computer Science & IT Research Journal, vol. 5(11): pp. 2539-2561.
-Fauzilah Salleh, Wan Nur Fatihah Rohaizad, Noor Izyan Shafiqa Mohd Zain, Nur Shahrin Nadia Kadimon, Syarmidah Syahruddin. 2021. Business Risks and Performance of SMEs in the Malaysian Construction Sector. The Journal of Contemporary Issues in Business and Government 27(2): 25-31.
-Goliya Bhavani. 2024. Loan Approval Prediction Using Machine Learning. International Journal of Research Publication and Reviews, 5(1): 95-98.
-Hiroshi Oikawa. 2021. The Effectiveness of the Government Policies to Support Local SMEs: The Case of Penang, Malaysia. Kansai University, Osaka.
-International Labour Organization (ILO). 2019. Small Matters: Global evidence on the contribution to employment by the self-employed, micro-enterprises and SMEs. ILO Publications Production Unit.
-Min Bai & Samir Harith. 2023. Measuring SMEs Risk – Evidence from Malaysia. SN Business & Economics, Springer 3(7): 1-32.
-Nigel Kollin Ondolos, Jasman Tuyon, Rozita Uji Mohammed. 2021. A Conceptual Framework for Bounded Rationality in Bank Officers’ Credit Decision for SME Lending in Malaysia. Asia-Pacific Management Accounting Journal, Volume 16 Issue 3. pp. 159-189.
-Organisation for Economic Co-operation and Development (OECD). 2022. Financing SMEs and Entrepreneurs 2022: An OECD Scoreboard. OECD Publishing, Paris.
-Suliman Mohamed Fati. 2021. Machine Learning-Based Prediction Model for Loan Status Approval. Journal of Hunan University Natural Sciences 48(10).
-SME Corp. Malaysia. 2013. Guideline for New SME Definition.
-Shamshubaridah Ramlee & Berma Berma. 2013. Financing Gap in Malaysian Small Medium Enterprises: A Supply-side Perspective. South African Journal of Economic and Management Sciences 15(5).
-United Nations Industrial Development Organization (UNIDO). 2024. Industrial Development Report 2024: Turning Challenges Into Sustainable Solutions: The New Era of Industrial Policy. UNIDO Publishing, Vienna
-Viswanatha V, Ramachandra A.C., Vishwas K N, Adithya G. 2023. Prediction of Loan Approval in Banks using Machine Learning Approach. International Journal of Engineering and Management Research 13(4): pp. 7-9.
-World Bank. 2019. Small and Medium Enterprises (SMEs) Finance. https://www.worldbank.org/en/topic/smefinance.html [16 October 2019].
+For questions, reach out to:
+- **Author**: Mohammad Wafiuddin bin Esa
+- **Email**: wafiesa@gmail.com
+- **University**: Universiti Kebangsaan Malaysia

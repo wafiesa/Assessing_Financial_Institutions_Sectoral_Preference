@@ -34,6 +34,7 @@ Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 
 ### 2. **Financial Ratios**
 Developed experimental ratios:
+
 $$
 \text{Approval Ratio} = \frac{\text{Financing Approved}}{\text{Financing Applied}}
 $$

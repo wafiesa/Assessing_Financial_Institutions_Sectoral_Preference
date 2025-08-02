@@ -35,9 +35,18 @@ Ten supervised classifiers were evaluated to detect FIs’ preference patterns:
 ### 2. **Financial Ratios**
 Developed experimental ratios:
 ```
-Approval Ratio=(Financing Approved)/(Financing Applied)
-Disbursement Ratio=(Financing Disbursed)/(Financing Approved)
-Repayment Ratio=(Financing Repaid)/(Financing Disbursed)
+$$
+\text{Approval Ratio} = \frac{\text{Financing Approved}}{\text{Financing Applied}}
+$$
+
+$$
+\text{Disbursement Ratio} = \frac{\text{Financing Disbursed}}{\text{Financing Approved}}
+$$
+
+$$
+\text{Repayment Ratio} = \frac{\text{Financing Repaid}}{\text{Financing Disbursed}}
+$$
+
 ```
 
 ### 3. **Label Encoding & Preprocessing**
